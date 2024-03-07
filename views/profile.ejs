@@ -1,0 +1,21 @@
+<h1>
+    Codeial  / Profile Page
+</h1>
+
+<img src="<%=locals.user.avatar  %>" alt="locals.user.name" width="100px">
+
+<% if(profile_user.id == locals.user.id){ %>
+    <!-- if user matches then show Edit button  -->
+    <form action="/user/update/<%= profile_user.id  %>" method="post" enctype="multipart/form-data">
+        <label for="email">Email : </label>
+        <input type="email" id="email" name="email" value="<%=profile_user.email%>" required><br><br>
+        <label for="name">Name : </label>
+        <input type="text" id="name" name="name" value="<%=profile_user.name%>" required><br><br>
+        <input type="file" name = "avatar" placeholder="profile picture">
+        <input type="submit" value="Update">
+    </form>
+<% }else{ %>
+        <!-- else show only the profile info -->
+        <h3>email : <%=  profile_user.email %></h3>
+        <h3>username  : <%= profile_user.name %></h3><br>
+<% } %>

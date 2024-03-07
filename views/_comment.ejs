@@ -1,0 +1,20 @@
+<div class="post-comment-list">
+        <ul>
+                <% for(cmt of post.comments){ %>
+                        <li><p><%= cmt.content %></p>
+                        <small><small class="user-name"><%= cmt.user.name %></small> 
+                               <% if(locals.user && cmt.user.id == locals.user.id){ %> 
+                                        <a class="delete-comment-button" href="/comments/destroy/<%=cmt.id%>">Delete</a>
+                                <% } %>
+                                <!-- <%= cmt.likes.length %>  -->
+                                <% if (locals.user){ %>
+                                        <a class="toggle-like-button" data-likes="<%= cmt.likes.length %>" href="/likes/toggle/?id=<%=cmt._id%>&type=Comment">
+                                                <%= cmt.likes.length %> Likes
+                                        </a>
+                                    <% }else{ %>
+                                        <%= cmt.likes.length %> Likes
+                                    <% } %>
+                        </small></li>
+                <% } %>
+        </ul>
+</div>
